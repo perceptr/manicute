@@ -89,4 +89,3 @@ class YandexImage:
                                  Preview(preview, preview_width, preview_height)))
 
         return output
-

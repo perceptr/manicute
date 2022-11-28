@@ -1,0 +1,6 @@
+aiogram
+psycopg2-binary
+requests
+selenium
+beautifulsoup4
+fake-headers

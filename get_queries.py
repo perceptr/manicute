@@ -1,7 +1,7 @@
 from itertools import product
 from new_ya_parser import NewYandexSearcher
+from get_images_for_db import save_image
 
-classic = ['cuticle', 'french']
 color = ['red', 'green', 'dark_blue', 'light_blue', 'yellow', 'orange',
          'purple', 'pink', 'black', 'white', 'brown', 'grey', 'gold',
          'silver', 'bronze', 'multicolor', 'red_nd', 'green_nd',
@@ -16,25 +16,22 @@ tops = ['matte', 'glossy']
 volume_small = ['glitter', 'rhinestones', 'beads', 'broths']
 volume_big = ['chains', 'piercing', 'figures']
 
-queries = [' '.join(str(perm)[2:-2].split('\', \''))
-           for perm in product(classic, color, size)]
-print(*queries, sep='\n')
-print(len(queries))
+queries = set()
 
+for perm in product(color, size, tops):
 
-for perm in product(classic, color, drawings, forms, size, tops,
-                    volume_small, volume_big):
+    queries.add(' '.join(str(perm)[2:-2].split('\', \'')))
 
-    queries.append(' '.join(str(perm)[2:-2].split('\', \'')))
-
-for i in range(10):
-    query = queries[i]
+count_q = len(queries)
+for i in range(5):
+    query = queries.pop() + ' manicure'
     print(query)
     searcher = NewYandexSearcher(query)
-    request = searcher.search()[:5]
-    print(query)
-    print(*request, sep='\n')
-    break
+    request = searcher.search()
+    for request in request:
+        save_image('additional_base/',
+                   f'{request}', request)
+    # /Users/glebkochergin/Desktop/Python/manicure_base/addit_base
 
 
 

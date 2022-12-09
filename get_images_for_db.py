@@ -25,7 +25,7 @@ def save_image(folder: str, name: str, url: str):
     # Create our output in the specified folder (wb = write bytes)
     with open(f'{folder}{output}', 'wb') as file:
         file.write(image_source.content)
-        print(f'Successfully downloaded: {output}')
+        # print(f'Successfully downloaded: {output}')
 
 
 i = 1
@@ -35,5 +35,5 @@ if __name__ == '__main__':
     count = int(input('Count: '))
     urls = bing_image_urls(keyword, limit=count)
     for url in urls:
-        save_image('manicure_base/white/', f'{keyword}' + str(i), url)
+        save_image('additional_base/', f'{keyword}' + str(i), url)
         i += 1

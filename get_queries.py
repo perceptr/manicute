@@ -23,17 +23,13 @@ for perm in product(color, size, tops):
     queries.add(' '.join(str(perm)[2:-2].split('\', \'')))
 
 count_q = len(queries)
-for i in range(5):
+for i in range(count_q):
     query = queries.pop() + ' manicure'
-    print(query)
     searcher = NewYandexSearcher(query)
     request = searcher.search()
+    name = 0
     for request in request:
-        save_image('additional_base/',
-                   f'{request}', request)
-    # /Users/glebkochergin/Desktop/Python/manicure_base/addit_base
-
-
-
-
-
+        save_image('additional_base/', f'{i+1}_{name}', request)
+        name += 1
+    print(f'{i+1} query of {count_q} is completed')
+    
